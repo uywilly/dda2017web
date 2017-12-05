@@ -18,8 +18,8 @@ public class TareaRestaurant {
      */
     public static void main(String[] args) {
         // TODO code application logic here ---- le agrego unas cosas mas 
-        //VentanaInicio v = new VentanaInicio();
-    	//v.setVisible(true);
+        VentanaInicio v = new VentanaInicio();
+    	v.setVisible(true);
     }
     //comentario
 }

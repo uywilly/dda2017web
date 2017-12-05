@@ -5,65 +5,32 @@
  */
 package Servlets;
 
-import UI.VentanaInicio;
-import UI.VentanaLoginMozo;
 import java.io.IOException;
 import java.io.PrintWriter;
-import javax.servlet.AsyncContext;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
-import vistaWeb.VistaLoginWeb;
+import main.TareaRestaurant;
+import vistaWeb.VistaLoginMozoWeb;
 
 /**
  *
  * @author william
  */
-@WebServlet(name = "servletLoginMozo", urlPatterns = {"/servletLoginMozo"})
-public class servletLoginMozo extends HttpServlet {
+@WebServlet(name = "LoginMozoServlet", urlPatterns = {"/login"})
+public class LoginMozoServlet extends HttpServlet {
 
-    /**
-     * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
-     * methods.
-     *
-     * @param request servlet request
-     * @param response servlet response
-     * @throws ServletException if a servlet-specific error occurs
-     * @throws IOException if an I/O error occurs
-     */
+    public LoginMozoServlet(){
+        TareaRestaurant.main(null);
+    }
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        
-        String accion = request.getParameter("accion");
-            System.out.println("ACCION=" + accion);
-            if(accion.equals("new")){
-                request.setAttribute("org.apache.catalina.ASYNC_SUPPORTED", true);
-                AsyncContext contexto = request.startAsync();
-                contexto.getResponse().setContentType("text/event-stream"); 
-                contexto.getResponse().setCharacterEncoding("UTF-8");
-                contexto.setTimeout(0);
-                request.getSession(true).setAttribute("vista",new VistaLoginWeb(contexto));
-                
-            }else{
-                HttpSession sesion = request.getSession();
-                if(sesion==null){
-                    System.out.println("SE PERDIO LA SESION");
-                    return;
-                }
-                VistaLoginWeb vista = (VistaLoginWeb)sesion.getAttribute("vista");
-                switch(accion){
-                    case "login" : vista.login(request.getParameter("nombre"), request.getParameter("pass"));
-                    break;
-
-                }
-            }
+        VistaLoginMozoWeb vista = new VistaLoginMozoWeb();
+        vista.login(request,response);
     }
-    public servletLoginMozo() {
-        new VentanaInicio().setVisible(true);
-    }
+    
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**
