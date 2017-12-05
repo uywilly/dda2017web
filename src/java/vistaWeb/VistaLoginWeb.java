@@ -43,7 +43,7 @@ public class VistaLoginWeb implements VistaLoginMozo {
     
     @Override
     public void ingresarMozo(Mozo m) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        enviar("ingresar", m.getNombre());
     }
 
     @Override

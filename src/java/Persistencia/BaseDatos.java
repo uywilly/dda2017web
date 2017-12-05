@@ -30,11 +30,12 @@ public class BaseDatos {
 
     private BaseDatos() {
     }
-    public void conectar(String url,String u,String p){
+    public void conectar(String url,String u,String p) {
         try {
+            Class.forName("com.mysql.jdbc.Driver").newInstance();
             conexion = DriverManager.getConnection(url, u, p);
             stmt = conexion.createStatement();
-        } catch (SQLException ex) {
+        } catch (Exception ex) {
             System.out.println("Error al conectar:" + ex.getMessage());
         }
     }
