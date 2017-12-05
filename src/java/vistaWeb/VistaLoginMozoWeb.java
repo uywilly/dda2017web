@@ -30,7 +30,7 @@ public class VistaLoginMozoWeb implements VistaLoginMozo{
     public void ingresarMozo(Mozo m) {
         try {
             request.getSession(true).setAttribute("mozo", m);
-            response.sendRedirect("newhtml.html");
+            response.sendRedirect("VentanaPrincipalMozoWeb.html");
         } catch (IOException ex) {
             System.out.println("Error al redirect:" + ex.getMessage());
         }

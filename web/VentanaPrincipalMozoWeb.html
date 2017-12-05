@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+    <head>
+        <title>TODO supply a title</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    </head>
+    <body>
+        <script src="http://code.jquery.com/jquery-latest.min.js"></script>
+         <script type="text/javascript">
+
+            var vistaWeb = new EventSource("mozo?accion=new"); // Le digo new al servletMozoPrincipal
+                                                
+            vistaWeb.onerror = function(evento) {
+               alert("Sin conexion con el servidor");
+                vistaWeb.close();
+                document.location="/mozo/";
+            };
+            
+            vistaWeb.addEventListener("mostrarMesas", function (evento){ // Evento que espera el listener de la vista
+                document.getElementById("mesas").innerHTML = evento.data; // id del HTML donde se cargara la DATA
+            },false);
+            vistaWeb.addEventListener("infoMesa", function (evento){ // Evento que espera el listener de la vista
+                document.getElementById("seleccionada").innerHTML = evento.data; // id del HTML donde se cargara la DATA
+            },false);
+            
+         function abrirMesa() {
+             
+                var unaM = document.getElementById("lstMesasMozo").selectedIndex;
+                $.get("mozo?accion=abrirMesa&mesa=" + unaM , function (data) {
+                      
+                });
+            };
+        </script>
+        
+
+        <!--CONTENIDOS -->
+        <br><div>Mesas <br><span id="mesas" ><!--lstMesasMozo --></span></div>
+        <br>
+        <input type="button" value="Abrir Mesa" onclick="abrirMesa()">
+        <br>
+        
+        <br><div>Mesa Seleccionada: <br><span id="seleccionada" ></span></div>
+        
+        
+    </body>
+</html>
