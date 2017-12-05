@@ -53,7 +53,7 @@ public class ServletMozoPrincipal extends HttpServlet {
            VistaPrincipalMozoWeb vista = (VistaPrincipalMozoWeb)request.getSession().getAttribute("vistaPM");
             switch (accion){
                 case "abrirMesa" : vista.abrirMesa(request); break;
-                //case "mesasMozo" : vista.mostrarMesasWeb(request);break;
+                case "cerrarMesa" : vista.cerrarMesa(request);break;
             }
         }
         
