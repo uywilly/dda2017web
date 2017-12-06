@@ -43,6 +43,9 @@ and open the template in the editor.
             vistaWeb.addEventListener("listarPedidos", function (evento) { // Evento que espera el listener de la vista
                 document.getElementById("pedidos").innerHTML = evento.data; // id del HTML donde se cargara la DATA
             }, false);
+            vistaWeb.addEventListener("mostrarPedidosMesas", function (evento) { // Evento que espera el listener de la vista
+                document.getElementById("pedidosMesa").innerHTML = evento.data; // id del HTML donde se cargara la DATA
+            }, false);
 
 
             function abrirMesa() {
@@ -76,7 +79,6 @@ and open the template in the editor.
                 var unM = document.getElementById("lstMozos").selectedIndex;
                 var unaM = document.getElementById("lstMesasMozo").selectedIndex;
                 $.get("mozo?accion=transferir&mesa=" + unaM +"&mozo="+unM, function (data) {
-
                 });
             };
             function agregarPedido() {
@@ -107,7 +109,8 @@ and open the template in the editor.
         <br>
         --> 
         <br><div>Mesa Seleccionada: <br><span id="seleccionada" ></span></div>
-        
+        <br><div>Servico Mesa <br><span id="pedidosMesa" ><!--lstPedidosMesa --></span></div>
+        <br>
         <br><div>Clientes <br><span id="clientes" ><!--lstClientes --></span></div>
         <br>
         

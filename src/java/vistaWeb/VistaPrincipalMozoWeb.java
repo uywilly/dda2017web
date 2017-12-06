@@ -12,6 +12,7 @@ import dominio.Cliente;
 import dominio.IMesa;
 import dominio.Mesa;
 import dominio.Mozo;
+import dominio.Pedido;
 import dominio.Producto;
 import dominio.RestaurantException;
 import dominio.Sistema;
@@ -125,10 +126,18 @@ public class VistaPrincipalMozoWeb implements VistaMozo{
     
     private void mostrarMesasWeb(ArrayList<IMesa> mesas) {
         ArrayList lista = new ArrayList();
+        ArrayList listaPedidosMesa = new ArrayList();
         for(IMesa m : mesas){
             lista.add("mesa " + m.verNumero() + "abierta:" + m.estaAbierta());
+            if(m.listarServicio()!=null && m.listarServicio().size()>0){
+                for(Pedido p : m.listarServicio()){
+                    listaPedidosMesa.add(p.toString());
+                }
+            }
         }
         enviar("mostrarMesas",Componentes.lista(true, "lstMesasMozo", lista));
+        enviar("mostrarPedidosMesas",Componentes.lista(true, "lstPedidosMesa", listaPedidosMesa));
+        
         //enviar("lo que escucha el event listener en la pagina",
         //Componentes.lista(true, "lstMesasMozo", lista)
         //);
