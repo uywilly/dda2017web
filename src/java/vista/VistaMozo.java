@@ -44,5 +44,7 @@ public interface VistaMozo {
     public void mostrarClientesRegistrados(ArrayList<Cliente> verClientesRegistrados, IMesa mesaSeleccionada);
 
     public void actualizarTimer(Transferencia trans);
+
+    public void mostrarMozosLogueados(ArrayList<Mozo> verMozosLoguados);
     
 }

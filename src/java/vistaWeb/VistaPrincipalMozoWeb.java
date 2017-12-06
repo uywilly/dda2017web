@@ -5,7 +5,9 @@
  */
 package vistaWeb;
 
+import com.mysql.fabric.Response;
 import controlador.ControladorMozo;
+import controlador.ControladorTransferencia;
 import dominio.Cliente;
 import dominio.IMesa;
 import dominio.Mesa;
@@ -16,8 +18,11 @@ import dominio.Transferencia;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.servlet.AsyncContext;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import utilidades.Componentes;
 import vista.VistaMozo;
 
@@ -40,6 +45,7 @@ public class VistaPrincipalMozoWeb implements VistaMozo{
             mesas = m.getMesas();
             mostrarMesasWeb(m.getMesas());
             controlador.asignarClienteMesa();
+            controlador.mostrarMozosLogueados();
         } catch (IOException ex) {
             System.out.println("Error al obtener el writer");
         }
@@ -80,8 +86,20 @@ public class VistaPrincipalMozoWeb implements VistaMozo{
             controlador.asignarClienteMesa(unC);
         }
     }
+    public void transferir(HttpServletRequest request) {
+        int posMesa = Integer.parseInt(request.getParameter("mesa"));
+        int posMozo = Integer.parseInt(request.getParameter("mozo"));
+        if(posMesa>-1&&posMozo>-1){
+            IMesa unaM = mesas.get(posMesa);
+            Mozo destino = Sistema.getInstancia().verMozosLoguados().get(posMozo);
+            controlador.guardarSeleccionada(unaM);
+            controlador.comenzarTransferenciaWeb(destino);
+            
+        }
+    }
     
-
+    
+    
     private void mostrarMesasWeb(ArrayList<IMesa> mesas) {
         ArrayList lista = new ArrayList();
         for(IMesa m : mesas){
@@ -92,13 +110,12 @@ public class VistaPrincipalMozoWeb implements VistaMozo{
         //Componentes.lista(true, "lstMesasMozo", lista)
         //);
     }
-    
+
     @Override
     public void mostrarClientesRegistrados(ArrayList<Cliente> verClientesRegistrados, IMesa mesaSeleccionada) {
         enviar("listaClientes",Componentes.lista(true, "lstClientes", verClientesRegistrados));
     }
 
-    
     @Override
     public void actualizarMesas(Mozo origen) {
         this.mostrarMesasWeb(origen.getMesas());
@@ -112,6 +129,17 @@ public class VistaPrincipalMozoWeb implements VistaMozo{
     public void limpiar() {
         enviar("infoMesa","");
     }
+    @Override
+    public void mostrarMozosLogueados(ArrayList<Mozo> verMozosLoguados) {
+        enviar("listarMozosLogueados",Componentes.lista(true, "lstMozos", verMozosLoguados));
+    }
+ 
+    
+    
+    
+    
+    
+    
 
     @Override
     public void agregarPedido(IMesa mesaSeleccionada) {
@@ -161,6 +189,16 @@ public class VistaPrincipalMozoWeb implements VistaMozo{
     public void actualizarTimer(Transferencia trans) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
+
+
+
+    
+
+
+
+
+
+
 
 
 

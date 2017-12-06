@@ -30,8 +30,9 @@ public class PanelInfoServicio extends javax.swing.JPanel {
     }
 
     public PanelInfoServicio(ControladorMozo c) {
-        initComponents();
         controlador = c;
+        initComponents();
+        
     }
 
     /**

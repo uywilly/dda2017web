@@ -31,6 +31,9 @@ and open the template in the editor.
             vistaWeb.addEventListener("listaClientes", function (evento) { // Evento que espera el listener de la vista
                 document.getElementById("clientes").innerHTML = evento.data; // id del HTML donde se cargara la DATA
             }, false);
+            vistaWeb.addEventListener("listarMozosLogueados", function (evento) { // Evento que espera el listener de la vista
+                document.getElementById("mozos").innerHTML = evento.data; // id del HTML donde se cargara la DATA
+            }, false);
 
             function abrirMesa() {
 
@@ -52,6 +55,14 @@ and open the template in the editor.
 
                 });
             };
+            function transferir() {
+
+                var unM = document.getElementById("lstMozos").selectedIndex;
+                var unaM = document.getElementById("lstMesasMozo").selectedIndex;
+                $.get("mozo?accion=transferir&mesa=" + unaM +"mozo"+unM, function (data) {
+
+                });
+            };
             /*function agregarPedido() {
 
                 var unaM = document.getElementById("lstMesasMozo").selectedIndex;
@@ -59,13 +70,7 @@ and open the template in the editor.
 
                 });
             };
-            function transferir() {
-
-                var unaM = document.getElementById("lstMesasMozo").selectedIndex;
-                $.get("mozo?accion=transferir&mesa=" + unaM, function (data) {
-
-                });
-            };*/
+            */
             
         </script>
 
@@ -79,13 +84,8 @@ and open the template in the editor.
         <br>
         
         <!--
-        <br>
-        <input type="button" value="Asignar Cliente" onclick="asignarCliente()">
-        <br>
         <input type="button" value="Agregar Pedido" onclick="agregarPedido()">
-        <br>
-        <input type="button" value="Transferir" onclick="transferir()">
-        <br>
+        
         <input type="button" value="Asignar Cliente" onclick="asignarCliente()">
         <br>
         --> 
@@ -96,6 +96,13 @@ and open the template in the editor.
         
                                    <!--PANEL ASIGNAR CLIENTE -->
         <input type="button" value="Asignar Cliente" onclick="asignarCliente()">
+        <br>
+        
+                                    <!--PANEL TRANSFERENCIAS -->
+        <br><div>Mozos logueados <br><span id="mozos" ><!--lstMozos --></span></div>
+        <br>
+        <br>
+        <input type="button" value="Transferir" onclick="transferir()">
         <br>
 
     </body>

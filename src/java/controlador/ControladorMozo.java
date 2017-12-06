@@ -110,6 +110,19 @@ public class ControladorMozo implements Observer {
             modelo.asignarClienteSeleccionadoMesa(mesaSeleccionada,unC);
         }catch (RestaurantException ex){vista.error(ex.getMessage());}
     }
+    /*agregado para web*/
+    public void mostrarMozosLogueados() {
+        vista.mostrarMozosLogueados(modelo.verMozosLoguados());
+    }
+    public void comenzarTransferenciaWeb(Mozo destino) {
+        Transferencia trans = new Transferencia(mesaSeleccionada.verMozo(), destino, mesaSeleccionada, false);
+       try{
+            modelo.transferir(trans);
+        }catch (RestaurantException ex){
+            vista.error(ex.getMessage() );
+        }
+    }
+    /*fin agregado para web*/
 
     @Override
     public void update(Observable o, Object arg) {
@@ -182,6 +195,10 @@ public class ControladorMozo implements Observer {
 
         }
     }
+
+    
+
+    
 
     
     

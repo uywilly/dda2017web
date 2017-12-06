@@ -165,6 +165,11 @@ public class VentanaPrincipalMozo extends javax.swing.JFrame implements VistaMoz
         }
     }
 
+    @Override
+    public void mostrarMozosLogueados(ArrayList<Mozo> verMozosLoguados) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     // End of variables declaration//GEN-END:variables
 }
