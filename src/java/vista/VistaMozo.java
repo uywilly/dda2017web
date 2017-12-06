@@ -9,6 +9,7 @@ import dominio.Cliente;
 import dominio.IMesa;
 import dominio.Mozo;
 import dominio.Pedido;
+import dominio.Producto;
 import dominio.Transferencia;
 import java.util.ArrayList;
 
@@ -48,6 +49,8 @@ public interface VistaMozo {
     public void mostrarMozosLogueados(ArrayList<Mozo> verMozosLoguados);
 
     public void ActualizarMozosLogueados(ArrayList<Mozo> verMozosLoguados);
+
+    public void mostrarProductos(ArrayList<Producto> listarProductos);
 
     
 }

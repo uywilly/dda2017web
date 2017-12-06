@@ -9,11 +9,15 @@ import dominio.Cliente;
 import dominio.IMesa;
 import dominio.Mesa;
 import dominio.Mozo;
+import dominio.Pedido;
+import dominio.Producto;
 import dominio.RestaurantException;
 import dominio.Sistema;
 import dominio.Transferencia;
 import java.util.Observable;
 import java.util.Observer;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import vista.VistaMozo;
 
 /**
@@ -96,15 +100,7 @@ public class ControladorMozo implements Observer {
         modelo.rechazarTransferencia(trans);
         this.trans = null;
     }
-    public void aceptarTransferencia(String res) {
-        if(res.equalsIgnoreCase("true")){
-            try{ modelo.aceptarTransferencia(trans);this.trans = null;}
-            catch (RestaurantException ex){vista.error(ex.getMessage());}
-        }else{
-            modelo.rechazarTransferencia(trans);
-            this.trans = null;
-        }
-    }
+    
 
     public void salir() {
         boolean b = modelo.logout(origen);
@@ -125,6 +121,9 @@ public class ControladorMozo implements Observer {
     public void mostrarMozosLogueados() {
         vista.mostrarMozosLogueados(modelo.verMozosLoguados());
     }
+    public void mostrarProductos() {
+        vista.mostrarProductos(modelo.listarProductos());
+    }
     public void comenzarTransferenciaWeb(Mozo destino) {
         Transferencia trans = new Transferencia(mesaSeleccionada.verMozo(), destino, mesaSeleccionada, false);
        try{
@@ -135,6 +134,24 @@ public class ControladorMozo implements Observer {
             vista.error(ex.getMessage() );
         }
     }
+    public void aceptarTransferencia(String res) {
+        if(res.equalsIgnoreCase("true")){
+            try{ modelo.aceptarTransferencia(trans);this.trans = null;}
+            catch (RestaurantException ex){vista.error(ex.getMessage());}
+        }else{
+            modelo.rechazarTransferencia(trans);
+            this.trans = null;
+        }
+    }
+    public void agregarPedido(IMesa unaM, Producto unP, int cant) {
+        try {
+            Pedido ped = new Pedido(cant,unP);
+            mesaSeleccionada.agregarPedido(ped);
+        } catch (RestaurantException ex) {
+            vista.error(ex.getMessage());
+        }
+    }
+
     /*fin agregado para web*/
 
     @Override
@@ -161,6 +178,7 @@ public class ControladorMozo implements Observer {
                 //mandar a la vista que hacer
                 vista.actualizarMesas(origen);
                 vista.mostrarMesa(mesaSeleccionada);
+                vista.mostrarProductos(modelo.listarProductos());
             }
             if (arg.equals(Sistema.Eventos.cerrarPedido)) {
                 //mandar a la vista que hacer
@@ -215,12 +233,6 @@ public class ControladorMozo implements Observer {
 
         }
     }
-
-    
-
-    
-
-    
 
     
     

@@ -10,6 +10,7 @@ import dominio.Cliente;
 import dominio.IMesa;
 import dominio.Mozo;
 import dominio.Pedido;
+import dominio.Producto;
 import dominio.Sistema;
 import dominio.Transferencia;
 import java.awt.Dialog;
@@ -173,6 +174,11 @@ public class VentanaPrincipalMozo extends javax.swing.JFrame implements VistaMoz
 
     @Override
     public void ActualizarMozosLogueados(ArrayList<Mozo> verMozosLoguados) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public void mostrarProductos(ArrayList<Producto> listarProductos) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 

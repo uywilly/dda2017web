@@ -50,7 +50,7 @@ public class SistemaUsuario {
         for (Mozo m : mozos) {
             if (m.getNombre().equals(nombre) && m.getClave().equals(clave) && !mozosLogueados.contains(m)) {
                 mozosLogueados.add(m);
-                Sistema.getInstancia().avisar(Sistema.Eventos.login);
+                //Sistema.getInstancia().avisar(Sistema.Eventos.login);
                 return m;
             }
         }

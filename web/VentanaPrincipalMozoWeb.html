@@ -40,6 +40,9 @@ and open the template in the editor.
             vistaWeb.addEventListener("mensajeTrans", function (evento) { // Evento que espera el listener de la vista
                 document.getElementById("mensajeTrans").innerHTML = evento.data; // id del HTML donde se cargara la DATA
             }, false);
+            vistaWeb.addEventListener("listarPedidos", function (evento) { // Evento que espera el listener de la vista
+                document.getElementById("pedidos").innerHTML = evento.data; // id del HTML donde se cargara la DATA
+            }, false);
 
 
             function abrirMesa() {
@@ -76,14 +79,15 @@ and open the template in the editor.
 
                 });
             };
-            /*function agregarPedido() {
-
-                var unaM = document.getElementById("lstMesasMozo").selectedIndex;
-                $.get("mozo?accion=agregarPedido&mesa=" + unaM, function (data) {
+            function agregarPedido() {
+                var mesa = document.getElementById("lstMesasMozo").selectedIndex;
+                var prod = document.getElementById("lstPedidos").selectedIndex;
+                var cantidad = document.getElementById("cantidad").value;
+                $.get("mozo?accion=agregarPedidoWeb&mesa=" + mesa+"&prod="+prod+"&cant="+cantidad, function (data) {
 
                 });
             };
-            */
+            
             
         </script>
 
@@ -109,8 +113,7 @@ and open the template in the editor.
         
                                    <!--PANEL ASIGNAR CLIENTE -->
         <input type="button" value="Asignar Cliente" onclick="asignarCliente()">
-        <br>
-        
+        <br>       
                                     <!--PANEL ENVIAR TRANSFERENCIAS -->
         <br><div>Mozos logueados <br><span id="mozos" ><!--lstMozos --></span></div>
         <br>
@@ -120,12 +123,20 @@ and open the template in the editor.
         
         <br><div><br><span id="mensajeTrans" ></span></div>
         <br>
-        <!--PANEL ENVIAR TRANSFERENCIAS -->
+                        <!--PANEL ENVIAR TRANSFERENCIAS -->
         <br><div>Tiempo restante <br><span id="lbltiempo" ></span></div>
         <br>
         <input type="checkbox" id="opcion" name="opcion" value="aceptar">aceptar<br>
         <br>
         <input type="button" value="Aceptar Transferencia" onclick="aceptarTransferencia()">
         
+        
+                            <!--PANEL ENVIAR TRANSFERENCIAS -->
+        <br><div>Agregar Pedido <br><span id="pedidos" ><!--lstPedidos --></span></div>
+        <br>
+        <br><div>Cantidad <br><input type="text" id="cantidad" ></div>
+        <br>
+        <input type="button" value="Pedidos" onclick="agregarPedido()">
+        <br>
     </body>
 </html>

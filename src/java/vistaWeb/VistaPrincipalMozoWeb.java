@@ -12,6 +12,7 @@ import dominio.Cliente;
 import dominio.IMesa;
 import dominio.Mesa;
 import dominio.Mozo;
+import dominio.Producto;
 import dominio.RestaurantException;
 import dominio.Sistema;
 import dominio.Transferencia;
@@ -46,6 +47,7 @@ public class VistaPrincipalMozoWeb implements VistaMozo{
             mostrarMesasWeb(m.getMesas());
             controlador.asignarClienteMesa();
             controlador.mostrarMozosLogueados();
+            controlador.mostrarProductos();
         } catch (IOException ex) {
             System.out.println("Error al obtener el writer");
         }
@@ -100,6 +102,23 @@ public class VistaPrincipalMozoWeb implements VistaMozo{
     public void aceptarTransferencia(HttpServletRequest request) {
         String res = request.getParameter("respuesta");
         controlador.aceptarTransferencia(res);
+    }
+    public void agregarPedidoWeb(HttpServletRequest request) {
+        int posMesa = Integer.parseInt(request.getParameter("mesa"));
+        int posProd = Integer.parseInt(request.getParameter("prod"));
+        int cant = Integer.parseInt(request.getParameter("cant"));
+        if(posMesa>-1&&posProd>-1){
+            IMesa unaM = mesas.get(posMesa);
+            Producto unP = Sistema.getInstancia().listarProductos().get(posProd);
+            controlador.guardarSeleccionada(unaM);
+            controlador.agregarPedido(unaM,unP,cant);
+            
+        }
+        
+    }
+    @Override
+    public void mostrarProductos(ArrayList<Producto> listarProductos) {
+        enviar("listarPedidos",Componentes.lista(true, "lstPedidos", listarProductos));
     }
     
     
@@ -184,6 +203,10 @@ public class VistaPrincipalMozoWeb implements VistaMozo{
     public void nombreEnVentana(Mozo origen) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
+
+    
+
+    
 
     
 
