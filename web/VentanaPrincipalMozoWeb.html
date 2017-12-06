@@ -28,6 +28,9 @@ and open the template in the editor.
             vistaWeb.addEventListener("infoMesa", function (evento) { // Evento que espera el listener de la vista
                 document.getElementById("seleccionada").innerHTML = evento.data; // id del HTML donde se cargara la DATA
             }, false);
+            vistaWeb.addEventListener("listaClientes", function (evento) { // Evento que espera el listener de la vista
+                document.getElementById("clientes").innerHTML = evento.data; // id del HTML donde se cargara la DATA
+            }, false);
 
             function abrirMesa() {
 
@@ -35,8 +38,7 @@ and open the template in the editor.
                 $.get("mozo?accion=abrirMesa&mesa=" + unaM, function (data) {
 
                 });
-            }
-            ;
+            };
             function cerrarMesa() {
 
                 var unaM = document.getElementById("lstMesasMozo").selectedIndex;
@@ -44,19 +46,57 @@ and open the template in the editor.
 
                 });
             };
+            function asignarCliente() {
+                var unC = document.getElementById("lstClientes").selectedIndex;
+                $.get("mozo?accion=asignarCliente&cliente=" + unC, function (data) {
+
+                });
+            };
+            /*function agregarPedido() {
+
+                var unaM = document.getElementById("lstMesasMozo").selectedIndex;
+                $.get("mozo?accion=agregarPedido&mesa=" + unaM, function (data) {
+
+                });
+            };
+            function transferir() {
+
+                var unaM = document.getElementById("lstMesasMozo").selectedIndex;
+                $.get("mozo?accion=transferir&mesa=" + unaM, function (data) {
+
+                });
+            };*/
+            
         </script>
 
 
-        <!--CONTENIDOS -->
+                                    <!--PANEL PRINCIPAL MOZO -->
         <br><div>Mesas <br><span id="mesas" ><!--lstMesasMozo --></span></div>
         <br>
         <input type="button" value="Abrir Mesa" onclick="abrirMesa()">
         <br>
         <input type="button" value="Cerrar Mesa" onclick="cerrarMesa()">
         <br>
-
+        
+        <!--
+        <br>
+        <input type="button" value="Asignar Cliente" onclick="asignarCliente()">
+        <br>
+        <input type="button" value="Agregar Pedido" onclick="agregarPedido()">
+        <br>
+        <input type="button" value="Transferir" onclick="transferir()">
+        <br>
+        <input type="button" value="Asignar Cliente" onclick="asignarCliente()">
+        <br>
+        --> 
         <br><div>Mesa Seleccionada: <br><span id="seleccionada" ></span></div>
-
+        
+        <br><div>Clientes <br><span id="clientes" ><!--lstClientes --></span></div>
+        <br>
+        
+                                   <!--PANEL ASIGNAR CLIENTE -->
+        <input type="button" value="Asignar Cliente" onclick="asignarCliente()">
+        <br>
 
     </body>
 </html>

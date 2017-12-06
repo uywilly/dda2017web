@@ -11,6 +11,7 @@ import dominio.IMesa;
 import dominio.Mesa;
 import dominio.Mozo;
 import dominio.RestaurantException;
+import dominio.Sistema;
 import dominio.Transferencia;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -38,6 +39,7 @@ public class VistaPrincipalMozoWeb implements VistaMozo{
             controlador = new ControladorMozo(this,m);
             mesas = m.getMesas();
             mostrarMesasWeb(m.getMesas());
+            controlador.asignarClienteMesa();
         } catch (IOException ex) {
             System.out.println("Error al obtener el writer");
         }
@@ -71,6 +73,14 @@ public class VistaPrincipalMozoWeb implements VistaMozo{
             controlador.cerrarMesa();
         }
     }
+    public void asignarCliente(HttpServletRequest request) {
+        int pos = Integer.parseInt(request.getParameter("cliente"));
+        if(pos>-1){
+            Cliente unC = Sistema.getInstancia().verClientesRegistrados().get(pos);
+            controlador.asignarClienteMesa(unC);
+        }
+    }
+    
 
     private void mostrarMesasWeb(ArrayList<IMesa> mesas) {
         ArrayList lista = new ArrayList();
@@ -83,7 +93,13 @@ public class VistaPrincipalMozoWeb implements VistaMozo{
         //);
     }
     
-        @Override
+    @Override
+    public void mostrarClientesRegistrados(ArrayList<Cliente> verClientesRegistrados, IMesa mesaSeleccionada) {
+        enviar("listaClientes",Componentes.lista(true, "lstClientes", verClientesRegistrados));
+    }
+
+    
+    @Override
     public void actualizarMesas(Mozo origen) {
         this.mostrarMesasWeb(origen.getMesas());
     }
@@ -99,7 +115,8 @@ public class VistaPrincipalMozoWeb implements VistaMozo{
 
     @Override
     public void agregarPedido(IMesa mesaSeleccionada) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        //request.getSession(true).setAttribute("mozo", m);
+        //response.sendRedirect("VentanaPrincipalMozoWeb.html");
     }
 
     @Override
@@ -134,22 +151,18 @@ public class VistaPrincipalMozoWeb implements VistaMozo{
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
-
-
     @Override
     public void nombreEnVentana(Mozo origen) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
-    @Override
-    public void mostrarClientesRegistrados(ArrayList<Cliente> verClientesRegistrados, IMesa mesaSeleccionada) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
 
     @Override
     public void actualizarTimer(Transferencia trans) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
+
+
 
     
 

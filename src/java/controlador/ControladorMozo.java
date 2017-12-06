@@ -5,6 +5,7 @@
  */
 package controlador;
 
+import dominio.Cliente;
 import dominio.IMesa;
 import dominio.Mesa;
 import dominio.Mozo;
@@ -104,6 +105,11 @@ public class ControladorMozo implements Observer {
     public void asignarClienteMesa() {
         vista.mostrarClientesRegistrados(modelo.verClientesRegistrados(), mesaSeleccionada);
     }
+    public void asignarClienteMesa(Cliente unC) {
+        try{
+            modelo.asignarClienteSeleccionadoMesa(mesaSeleccionada,unC);
+        }catch (RestaurantException ex){vista.error(ex.getMessage());}
+    }
 
     @Override
     public void update(Observable o, Object arg) {
@@ -176,6 +182,8 @@ public class ControladorMozo implements Observer {
 
         }
     }
+
+    
     
 
 }
