@@ -26,6 +26,7 @@ public class ControladorMozo implements Observer {
 
     private IMesa mesaSeleccionada;
     private Mozo origen;
+    Transferencia trans;
 
     private VistaMozo vista;
 
@@ -87,12 +88,22 @@ public class ControladorMozo implements Observer {
     }
 
     public void aceptarTransferencia(Transferencia trans) {
-        try{ modelo.aceptarTransferencia(trans);}
+        try{ modelo.aceptarTransferencia(trans);this.trans = null;}
         catch (RestaurantException ex){vista.error(ex.getMessage());}
     }
 
     public void rechazarTransferencia(Transferencia trans) {
         modelo.rechazarTransferencia(trans);
+        this.trans = null;
+    }
+    public void aceptarTransferencia(String res) {
+        if(res.equalsIgnoreCase("true")){
+            try{ modelo.aceptarTransferencia(trans);this.trans = null;}
+            catch (RestaurantException ex){vista.error(ex.getMessage());}
+        }else{
+            modelo.rechazarTransferencia(trans);
+            this.trans = null;
+        }
     }
 
     public void salir() {
@@ -117,7 +128,9 @@ public class ControladorMozo implements Observer {
     public void comenzarTransferenciaWeb(Mozo destino) {
         Transferencia trans = new Transferencia(mesaSeleccionada.verMozo(), destino, mesaSeleccionada, false);
        try{
+            this.trans = trans;
             modelo.transferir(trans);
+            
         }catch (RestaurantException ex){
             vista.error(ex.getMessage() );
         }
@@ -195,6 +208,8 @@ public class ControladorMozo implements Observer {
 
         }
     }
+
+    
 
     
 

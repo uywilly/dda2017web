@@ -97,6 +97,10 @@ public class VistaPrincipalMozoWeb implements VistaMozo{
             
         }
     }
+    public void aceptarTransferencia(HttpServletRequest request) {
+        String res = request.getParameter("respuesta");
+        controlador.aceptarTransferencia(res);
+    }
     
     
     
@@ -133,13 +137,26 @@ public class VistaPrincipalMozoWeb implements VistaMozo{
     public void mostrarMozosLogueados(ArrayList<Mozo> verMozosLoguados) {
         enviar("listarMozosLogueados",Componentes.lista(true, "lstMozos", verMozosLoguados));
     }
+    
+    @Override
+    public void actualizarTimer(Transferencia trans) {
+        enviar("timer",trans.getTiempo()+"");
+    }
+    @Override
+    public void mostrarMensajeMesaAceptada() {
+        enviar("mensajeTrans","Transferencia Aceptada");
+    }
+    @Override
+    public void mostrarMensajeTransferenciaRechazada() {
+        enviar("mensajeTrans","Transferencia Rechazada");
+    }
+    
+    
  
-    
-    
-    
-    
-    
-    
+    @Override
+    public void mostrarMensajeTransferenciaPendiente(Transferencia trans) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
 
     @Override
     public void agregarPedido(IMesa mesaSeleccionada) {
@@ -152,10 +169,7 @@ public class VistaPrincipalMozoWeb implements VistaMozo{
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
-    @Override
-    public void mostrarMensajeTransferenciaPendiente(Transferencia trans) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
+
 
 
 
@@ -169,26 +183,17 @@ public class VistaPrincipalMozoWeb implements VistaMozo{
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
-    @Override
-    public void mostrarMensajeMesaAceptada() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
 
-    @Override
-    public void mostrarMensajeTransferenciaRechazada() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
 
     @Override
     public void nombreEnVentana(Mozo origen) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
+    
 
-    @Override
-    public void actualizarTimer(Transferencia trans) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
+
+    
 
 
 

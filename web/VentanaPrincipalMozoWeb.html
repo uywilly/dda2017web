@@ -34,6 +34,12 @@ and open the template in the editor.
             vistaWeb.addEventListener("listarMozosLogueados", function (evento) { // Evento que espera el listener de la vista
                 document.getElementById("mozos").innerHTML = evento.data; // id del HTML donde se cargara la DATA
             }, false);
+            vistaWeb.addEventListener("timer", function (evento) { // Evento que espera el listener de la vista
+                document.getElementById("lbltiempo").innerHTML = evento.data; // id del HTML donde se cargara la DATA
+            }, false);
+            vistaWeb.addEventListener("mensajeTrans", function (evento) { // Evento que espera el listener de la vista
+                document.getElementById("mensajeTrans").innerHTML = evento.data; // id del HTML donde se cargara la DATA
+            }, false);
 
             function abrirMesa() {
 
@@ -55,11 +61,17 @@ and open the template in the editor.
 
                 });
             };
+            function aceptarTransferencia() {
+                var res = document.getElementById("opcion").checked;
+                $.get("mozo?accion=aceptarTransferencia&respuesta=" + res, function (data) {
+
+                });
+            };
             function transferir() {
 
                 var unM = document.getElementById("lstMozos").selectedIndex;
                 var unaM = document.getElementById("lstMesasMozo").selectedIndex;
-                $.get("mozo?accion=transferir&mesa=" + unaM +"mozo"+unM, function (data) {
+                $.get("mozo?accion=transferir&mesa=" + unaM +"&mozo="+unM, function (data) {
 
                 });
             };
@@ -103,6 +115,13 @@ and open the template in the editor.
         <br>
         <br>
         <input type="button" value="Transferir" onclick="transferir()">
+        <br>
+        <br><div>Aceptar Transferencia? Tiempo restante <br><span id="lbltiempo" ></span></div>
+        <br>
+        <input type="checkbox" id="opcion" name="opcion" value="aceptar">aceptar<br>
+        <br>
+        <input type="button" value="Aceptar Transferencia" onclick="aceptarTransferencia()">
+        <br><div>Resultado de transferencia <br><span id="mensajeTrans" ></span></div>
         <br>
 
     </body>
