@@ -172,6 +172,7 @@ public class ControladorMozo implements Observer {
                 //y le pide a la viste que le muestra el mensaje al mozo destino
                 Transferencia trans = modelo.verTransferenciasPendientes();
                 if (trans != null && trans.getDestino().equals(origen)) {
+                    this.trans = trans;
                     vista.mostrarMensajeTransferenciaPendiente(trans);
                 }
 
@@ -203,6 +204,12 @@ public class ControladorMozo implements Observer {
                 if (mesaSeleccionada != null && mesaSeleccionada.verMozo().equals(origen)) {
                     vista.mostrarMensajeTransferenciaRechazada();
                 }
+            }
+            if (arg.equals(Sistema.Eventos.login)) {
+                vista.ActualizarMozosLogueados(modelo.verMozosLoguados());
+            }
+            if (arg.equals(Sistema.Eventos.logout)) {
+                vista.ActualizarMozosLogueados(modelo.verMozosLoguados());
 
             }
 

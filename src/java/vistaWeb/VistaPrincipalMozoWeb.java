@@ -114,6 +114,10 @@ public class VistaPrincipalMozoWeb implements VistaMozo{
         //Componentes.lista(true, "lstMesasMozo", lista)
         //);
     }
+    @Override
+    public void ActualizarMozosLogueados(ArrayList<Mozo> verMozosLoguados) {
+        enviar("listarMozosLogueados",Componentes.lista(true, "lstMozos", verMozosLoguados));
+    }
 
     @Override
     public void mostrarClientesRegistrados(ArrayList<Cliente> verClientesRegistrados, IMesa mesaSeleccionada) {
@@ -150,12 +154,9 @@ public class VistaPrincipalMozoWeb implements VistaMozo{
     public void mostrarMensajeTransferenciaRechazada() {
         enviar("mensajeTrans","Transferencia Rechazada");
     }
-    
-    
- 
     @Override
     public void mostrarMensajeTransferenciaPendiente(Transferencia trans) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        enviar("mensajeTrans","Transferencia Pendiente: " + trans.toString()+" Aceptar? ");
     }
 
     @Override
@@ -169,10 +170,6 @@ public class VistaPrincipalMozoWeb implements VistaMozo{
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
-
-
-
-
     @Override
     public void cerrar(boolean b, Mozo origen) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
@@ -183,12 +180,12 @@ public class VistaPrincipalMozoWeb implements VistaMozo{
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
-
-
     @Override
     public void nombreEnVentana(Mozo origen) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
+
+    
 
     
 

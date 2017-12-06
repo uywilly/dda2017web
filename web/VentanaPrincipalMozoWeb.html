@@ -41,6 +41,7 @@ and open the template in the editor.
                 document.getElementById("mensajeTrans").innerHTML = evento.data; // id del HTML donde se cargara la DATA
             }, false);
 
+
             function abrirMesa() {
 
                 var unaM = document.getElementById("lstMesasMozo").selectedIndex;
@@ -110,19 +111,21 @@ and open the template in the editor.
         <input type="button" value="Asignar Cliente" onclick="asignarCliente()">
         <br>
         
-                                    <!--PANEL TRANSFERENCIAS -->
+                                    <!--PANEL ENVIAR TRANSFERENCIAS -->
         <br><div>Mozos logueados <br><span id="mozos" ><!--lstMozos --></span></div>
         <br>
         <br>
         <input type="button" value="Transferir" onclick="transferir()">
         <br>
-        <br><div>Aceptar Transferencia? Tiempo restante <br><span id="lbltiempo" ></span></div>
+        
+        <br><div><br><span id="mensajeTrans" ></span></div>
+        <br>
+        <!--PANEL ENVIAR TRANSFERENCIAS -->
+        <br><div>Tiempo restante <br><span id="lbltiempo" ></span></div>
         <br>
         <input type="checkbox" id="opcion" name="opcion" value="aceptar">aceptar<br>
         <br>
         <input type="button" value="Aceptar Transferencia" onclick="aceptarTransferencia()">
-        <br><div>Resultado de transferencia <br><span id="mensajeTrans" ></span></div>
-        <br>
-
+        
     </body>
 </html>

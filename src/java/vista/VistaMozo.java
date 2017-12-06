@@ -46,5 +46,8 @@ public interface VistaMozo {
     public void actualizarTimer(Transferencia trans);
 
     public void mostrarMozosLogueados(ArrayList<Mozo> verMozosLoguados);
+
+    public void ActualizarMozosLogueados(ArrayList<Mozo> verMozosLoguados);
+
     
 }

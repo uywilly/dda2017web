@@ -23,7 +23,7 @@ public class Sistema extends Observable {
         abrirMesa, cerrarMesa, agregarPedido, 
         comenzarTransferencia, aceptarTransferencia, 
         rechazarTransferencia, procesarPedido, cerrarPedido, 
-        clienteAgregado, tiempo};
+        clienteAgregado, tiempo, login, logout};
 
     /////////////////Singleton/////////////////
     private static Sistema instancia = new Sistema();
@@ -40,7 +40,8 @@ public class Sistema extends Observable {
         
     }
     public Mozo loginMozo(String nombre, String clave) throws RestaurantException {
-        return su.loginMozo(nombre, clave);
+        Mozo m = su.loginMozo(nombre, clave);
+        return m;
     }
     public Gestor loginGestor(String nombre, String clave) throws RestaurantException {
         return su.loginGestor(nombre, clave);

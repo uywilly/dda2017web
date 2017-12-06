@@ -10,6 +10,7 @@ import dominio.Cliente;
 import dominio.IMesa;
 import dominio.Mozo;
 import dominio.Pedido;
+import dominio.Sistema;
 import dominio.Transferencia;
 import java.awt.Dialog;
 import java.awt.GridLayout;
@@ -43,7 +44,6 @@ public class VentanaPrincipalMozo extends javax.swing.JFrame implements VistaMoz
     public VentanaPrincipalMozo(Mozo m) {
         initComponents();
         
-        
         controlador = new ControladorMozo(this,m);
         this.elMozo = m;
         controlador.nombreEnVentana();
@@ -54,6 +54,7 @@ public class VentanaPrincipalMozo extends javax.swing.JFrame implements VistaMoz
         panelVentana.setLayout(layout);
         panelVentana.add(panelMesas);
         panelVentana.add(panelInfoServicios);
+
     }
     
 
@@ -169,6 +170,13 @@ public class VentanaPrincipalMozo extends javax.swing.JFrame implements VistaMoz
     public void mostrarMozosLogueados(ArrayList<Mozo> verMozosLoguados) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
+
+    @Override
+    public void ActualizarMozosLogueados(ArrayList<Mozo> verMozosLoguados) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     // End of variables declaration//GEN-END:variables

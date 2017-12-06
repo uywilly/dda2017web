@@ -30,7 +30,7 @@ public class ControladorLoginMozo {
         try {
             Mozo m = modelo.loginMozo(nombre, clave);
             if (m != null) {
-                vistaMozo.ingresarMozo(m);
+                vistaMozo.ingresarMozo(m);        
             }
         }catch(RestaurantException ex){
             vistaMozo.error(ex.getMessage());
