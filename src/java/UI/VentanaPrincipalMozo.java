@@ -169,17 +169,14 @@ public class VentanaPrincipalMozo extends javax.swing.JFrame implements VistaMoz
 
     @Override
     public void mostrarMozosLogueados(ArrayList<Mozo> verMozosLoguados) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
     public void ActualizarMozosLogueados(ArrayList<Mozo> verMozosLoguados) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
     public void mostrarProductos(ArrayList<Producto> listarProductos) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
 

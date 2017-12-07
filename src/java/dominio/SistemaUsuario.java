@@ -50,7 +50,7 @@ public class SistemaUsuario {
         for (Mozo m : mozos) {
             if (m.getNombre().equals(nombre) && m.getClave().equals(clave) && !mozosLogueados.contains(m)) {
                 mozosLogueados.add(m);
-                //Sistema.getInstancia().avisar(Sistema.Eventos.login);
+                Sistema.getInstancia().avisar(Sistema.Eventos.login);
                 return m;
             }
         }
@@ -110,7 +110,7 @@ public class SistemaUsuario {
         if(!this.mozosLogueados.contains(m)) return true;
         if(m.getMesasAbiertas().isEmpty()){
             this.mozosLogueados.remove(m);
-            //Sistema.getInstancia().avisar(Sistema.Eventos.logout);
+            Sistema.getInstancia().avisar(Sistema.Eventos.logout);
             return true;
         }        
         return false;
