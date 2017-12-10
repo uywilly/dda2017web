@@ -93,7 +93,7 @@ public class VentanaTransferencia extends javax.swing.JFrame implements VistaTra
 
     @Override
     public void cargarMozosLogueados(ArrayList<Mozo> verMozosLoguados) {
-        lstMozoDestino.setListData(verMozosLoguados.toArray());
+        if(lstMozoDestino!=null) lstMozoDestino.setListData(verMozosLoguados.toArray());
     }
 
     @Override

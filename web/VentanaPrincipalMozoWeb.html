@@ -46,6 +46,11 @@ and open the template in the editor.
             vistaWeb.addEventListener("mostrarPedidosMesas", function (evento) { // Evento que espera el listener de la vista
                 document.getElementById("pedidosMesa").innerHTML = evento.data; // id del HTML donde se cargara la DATA
             }, false);
+            vistaWeb.addEventListener("cerrar", function (evento) { // Evento que espera el listener de la vista
+                //document.close();
+                vistaWeb.close();
+                window.open("index.jsp");
+            }, false);
 
 
             function abrirMesa() {
@@ -95,9 +100,19 @@ and open the template in the editor.
 
                 });
             };
+            function salir() {
+                $.get("mozo?accion=salir", function (data) {
+
+                });
+            };
             
             
         </script>
+        
+                        <!--PANEL PRINCIPAL SALIR -->
+        <br>
+        <input type="button" value="Salir" onclick="salir()">
+        <br>
 
 
                                     <!--PANEL PRINCIPAL MOZO -->

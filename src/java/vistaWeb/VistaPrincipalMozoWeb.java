@@ -66,6 +66,9 @@ public class VistaPrincipalMozoWeb implements VistaMozo{
              System.out.println("Enviado");
         }
     }
+      public void salir(HttpServletRequest request) {
+          controlador.salir();
+    }
     public void abrirMesa(HttpServletRequest request) {
         int pos = Integer.parseInt(request.getParameter("mesa"));
         if(pos>-1){
@@ -74,6 +77,7 @@ public class VistaPrincipalMozoWeb implements VistaMozo{
             controlador.abrirMesa();
         }
     }
+    
     public void cerrarMesa(HttpServletRequest request) {
         int pos = Integer.parseInt(request.getParameter("mesa"));
         if(pos>-1){
@@ -149,6 +153,10 @@ public class VistaPrincipalMozoWeb implements VistaMozo{
         //);
     }
     @Override
+    public void cerrar(boolean b, Mozo origen) {
+        enviar("cerrar","");
+    }
+    @Override
     public void ActualizarMozosLogueados(ArrayList<Mozo> verMozosLoguados) {
         enviar("listarMozosLogueados",Componentes.lista(true, "lstMozos", verMozosLoguados));
     }
@@ -204,10 +212,7 @@ public class VistaPrincipalMozoWeb implements VistaMozo{
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
-    @Override
-    public void cerrar(boolean b, Mozo origen) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
+
 
     @Override
     public void error(String message) {
@@ -218,6 +223,8 @@ public class VistaPrincipalMozoWeb implements VistaMozo{
     public void nombreEnVentana(Mozo origen) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
+
+  
 
     
 

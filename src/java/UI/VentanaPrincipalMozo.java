@@ -29,6 +29,7 @@ public class VentanaPrincipalMozo extends javax.swing.JFrame implements VistaMoz
     private PanelMesas panelMesas;
     private PanelInfoServicio panelInfoServicios;
     private VentanaMensajeAceptarTransferencia ventanaMensaje;
+    private VentanaTransferencia vt;
     
     private ControladorMozo controlador;
     private Mozo elMozo;
@@ -108,7 +109,8 @@ public class VentanaPrincipalMozo extends javax.swing.JFrame implements VistaMoz
 
     @Override
     public void transferirMesa(IMesa mesaSeleccionada) {
-        new VentanaTransferencia(mesaSeleccionada).setVisible(true);
+        vt = new VentanaTransferencia(mesaSeleccionada);
+        vt.setVisible(true);
     }
 
     @Override
@@ -169,10 +171,12 @@ public class VentanaPrincipalMozo extends javax.swing.JFrame implements VistaMoz
 
     @Override
     public void mostrarMozosLogueados(ArrayList<Mozo> verMozosLoguados) {
+        vt.cargarMozosLogueados(verMozosLoguados);
     }
 
     @Override
     public void ActualizarMozosLogueados(ArrayList<Mozo> verMozosLoguados) {
+        vt.cargarMozosLogueados(verMozosLoguados);
     }
 
     @Override

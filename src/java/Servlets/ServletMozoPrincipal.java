@@ -58,6 +58,7 @@ public class ServletMozoPrincipal extends HttpServlet {
                 case "transferir" : vista.transferir(request);break;
                 case "asignarCliente" : vista.asignarCliente(request);break;
                 case "aceptarTransferencia" : vista.aceptarTransferencia(request);break;
+                case "salir" : vista.salir(request);break;
             }
         }
         
