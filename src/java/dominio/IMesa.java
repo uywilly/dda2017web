@@ -24,4 +24,5 @@ public interface IMesa {
     public void asignarClienteSeleccionado(Cliente unC) throws RestaurantException;
     public int getOid();
     public void setOid(int oid);
+    public Cliente getCliente();
 }

@@ -19,6 +19,10 @@ public class Sistema extends Observable {
     private SistemaTransferencias st = new SistemaTransferencias();
     private SistemaUnidadProcesadora supp = new SistemaUnidadProcesadora();
 
+    public Cliente buscarClienteXid(int pos) throws RestaurantException {
+        return su.buscarClienteXid(pos);
+    }
+
     public enum Eventos {
         abrirMesa, cerrarMesa, agregarPedido, 
         comenzarTransferencia, aceptarTransferencia, 

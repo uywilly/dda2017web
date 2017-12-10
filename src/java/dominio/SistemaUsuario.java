@@ -44,6 +44,20 @@ public class SistemaUsuario {
     public ArrayList<Mozo> getGestores() {
         return mozos;
     }
+    
+    Cliente buscarClienteXid(int pos) throws RestaurantException{
+        Cliente cli = null;
+        int cont = 0;
+        while(cli==null && cont<this.clientes.size()){
+            if(this.clientes.get(cont).getOid()==pos){
+                cli = this.clientes.get(cont);               
+            }
+            cont++;
+        }
+        if(cli==null)throw new RestaurantException("No existe el clietne");
+
+        return cli;
+    }
 
     public Mozo loginMozo(String nombre, String clave) throws RestaurantException {
         Mozo salida = null;
@@ -211,21 +225,5 @@ public class SistemaUsuario {
         */
        
     }
-
-
-
-    
-
-
-
-
-
-    
-
-    
-
-    
-
-    
 
 }

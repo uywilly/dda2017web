@@ -34,6 +34,11 @@ public class Mesa implements IMesa {
         
     }
 
+    public Cliente getCliente() {
+        return cliente;
+    }
+
+    
     public void setNumero(int numero) {
         this.numero = numero;
     }

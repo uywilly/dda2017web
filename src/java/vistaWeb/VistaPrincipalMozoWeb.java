@@ -85,8 +85,14 @@ public class VistaPrincipalMozoWeb implements VistaMozo{
     public void asignarCliente(HttpServletRequest request) {
         int pos = Integer.parseInt(request.getParameter("cliente"));
         if(pos>-1){
-            Cliente unC = Sistema.getInstancia().verClientesRegistrados().get(pos);
-            controlador.asignarClienteMesa(unC);
+            Cliente unC;
+            try {
+                unC = Sistema.getInstancia().buscarClienteXid(pos);
+                controlador.asignarClienteMesa(unC);
+            } catch (RestaurantException ex) {
+                Logger.getLogger(VistaPrincipalMozoWeb.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            
         }
     }
     public void transferir(HttpServletRequest request) {
@@ -131,7 +137,7 @@ public class VistaPrincipalMozoWeb implements VistaMozo{
             lista.add("mesa " + m.verNumero() + "abierta:" + m.estaAbierta());
             if(m.listarServicio()!=null && m.listarServicio().size()>0){
                 for(Pedido p : m.listarServicio()){
-                    listaPedidosMesa.add(p.toString());
+                    listaPedidosMesa.add(p.toString() + m.getCliente());
                 }
             }
         }

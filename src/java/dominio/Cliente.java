@@ -51,5 +51,11 @@ public class Cliente extends Usuario{
     public int calcularDescuentoTotal(int subtotal) {
         return tipo.calcularDescuentoTotal(subtotal);
     }
+
+    @Override
+    public String toString() {
+        return "Cliente{" + "email=" + email + ", idCliente=" + idCliente + ", tipo=" + tipo + '}';
+    }
+    
     
 }

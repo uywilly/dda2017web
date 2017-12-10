@@ -61,9 +61,15 @@ and open the template in the editor.
                 $.get("mozo?accion=cerrarMesa&mesa=" + unaM, function (data) {
 
                 });
-            };
+            };/*
             function asignarCliente() {
                 var unC = document.getElementById("lstClientes").selectedIndex;
+                $.get("mozo?accion=asignarCliente&cliente=" + unC, function (data) {
+
+                });
+            };*/
+            function asignarCliente() {
+                var unC = document.getElementById("idCliente").value;
                 $.get("mozo?accion=asignarCliente&cliente=" + unC, function (data) {
 
                 });
@@ -110,11 +116,16 @@ and open the template in the editor.
         --> 
         <br><div>Mesa Seleccionada: <br><span id="seleccionada" ></span></div>
         <br><div>Servico Mesa <br><span id="pedidosMesa" ><!--lstPedidosMesa --></span></div>
-        <br>
-        <br><div>Clientes <br><span id="clientes" ><!--lstClientes --></span></div>
-        <br>
+        
         
                                    <!--PANEL ASIGNAR CLIENTE -->
+         
+        <!--lstClientes -->                           
+        <!--<br>
+        <br><div>Clientes <br><span id="clientes" ></span></div>
+        <br> -->
+        
+        <br><div>ingrese el id del cliente <br><input type="text" id="idCliente" ></div>
         <input type="button" value="Asignar Cliente" onclick="asignarCliente()">
         <br>       
                                     <!--PANEL ENVIAR TRANSFERENCIAS -->
