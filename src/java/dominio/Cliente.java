@@ -52,12 +52,12 @@ public class Cliente extends Usuario{
         return tipo.calcularDescuentoTotal(subtotal);
     }
     public String mostrarBeneficio(){
-        String texto ="Descuento aplicado a ";
+        String texto =" Descuento aplicado a ";
         if(tipo.getNombreTipo().equalsIgnoreCase("COMUN")){
-            texto+=  tipo.getProductoConDescuento();
+            texto+=  tipo.getProductoConDescuento().getNombre();
         }
         if(tipo.getNombreTipo().equalsIgnoreCase("PREFERENCIAL")){
-            texto+=  tipo.getProductoConDescuento();
+            texto+=  tipo.getProductoConDescuento().getNombre();
         }
         if(tipo.getNombreTipo().equalsIgnoreCase("DE LA CASA")){
             texto+= " Descuento aplicado al total";
@@ -68,7 +68,7 @@ public class Cliente extends Usuario{
 
     @Override
     public String toString() {
-        return "Cliente{" + "email=" + email + ", idCliente=" + idCliente + ", tipo=" + tipo + '}';
+        return "Cliente{" + "email=" + email + ", idCliente=" + idCliente + '}';
     }
     
     

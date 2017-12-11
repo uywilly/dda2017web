@@ -43,6 +43,7 @@ public class SistemaProductos {
             if(productos.get(contador).getCodigo().equalsIgnoreCase(dato)){
                 unp = productos.get(contador);
             }
+            contador++;
         }
         return unp;
     }
