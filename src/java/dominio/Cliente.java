@@ -51,6 +51,20 @@ public class Cliente extends Usuario{
     public int calcularDescuentoTotal(int subtotal) {
         return tipo.calcularDescuentoTotal(subtotal);
     }
+    public String mostrarBeneficio(){
+        String texto ="Descuento aplicado a ";
+        if(tipo.getNombreTipo().equalsIgnoreCase("COMUN")){
+            texto+=  tipo.getProductoConDescuento();
+        }
+        if(tipo.getNombreTipo().equalsIgnoreCase("PREFERENCIAL")){
+            texto+=  tipo.getProductoConDescuento();
+        }
+        if(tipo.getNombreTipo().equalsIgnoreCase("DE LA CASA")){
+            texto+= " Descuento aplicado al total";
+        }
+        
+        return tipo.getNombreTipo() + texto;
+    }
 
     @Override
     public String toString() {

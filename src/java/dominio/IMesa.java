@@ -25,4 +25,6 @@ public interface IMesa {
     public int getOid();
     public void setOid(int oid);
     public Cliente getCliente();
+    public int totalSinDescuento();
+    public String mostrarBeneficio();
 }

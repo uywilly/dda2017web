@@ -53,13 +53,14 @@ public class PanelInfoServicio extends javax.swing.JPanel {
         jLabel1 = new javax.swing.JLabel();
         txtMesaSeleccionada = new javax.swing.JTextField();
         jButton1 = new javax.swing.JButton();
+        lblCli = new javax.swing.JLabel();
 
         setLayout(null);
 
         jScrollPane1.setViewportView(lstServiciosMesa);
 
         add(jScrollPane1);
-        jScrollPane1.setBounds(20, 80, 570, 130);
+        jScrollPane1.setBounds(20, 120, 570, 130);
 
         btnAbrir.setText("Abrir Mesa");
         btnAbrir.addActionListener(new java.awt.event.ActionListener() {
@@ -68,7 +69,7 @@ public class PanelInfoServicio extends javax.swing.JPanel {
             }
         });
         add(btnAbrir);
-        btnAbrir.setBounds(20, 240, 100, 23);
+        btnAbrir.setBounds(20, 280, 100, 23);
 
         btnAgregarPedido.setText("Agregar Pedido");
         btnAgregarPedido.addActionListener(new java.awt.event.ActionListener() {
@@ -77,7 +78,7 @@ public class PanelInfoServicio extends javax.swing.JPanel {
             }
         });
         add(btnAgregarPedido);
-        btnAgregarPedido.setBounds(120, 240, 130, 23);
+        btnAgregarPedido.setBounds(120, 280, 130, 23);
 
         btnTransferir.setText("Transferir");
         btnTransferir.addActionListener(new java.awt.event.ActionListener() {
@@ -86,7 +87,7 @@ public class PanelInfoServicio extends javax.swing.JPanel {
             }
         });
         add(btnTransferir);
-        btnTransferir.setBounds(250, 240, 110, 23);
+        btnTransferir.setBounds(250, 280, 110, 23);
 
         btnCerrarMesa.setText("Cerrar Mesa");
         btnCerrarMesa.addActionListener(new java.awt.event.ActionListener() {
@@ -95,7 +96,7 @@ public class PanelInfoServicio extends javax.swing.JPanel {
             }
         });
         add(btnCerrarMesa);
-        btnCerrarMesa.setBounds(480, 240, 120, 23);
+        btnCerrarMesa.setBounds(480, 280, 120, 23);
 
         jLabel1.setText("Se ha seleccionado la mesa:");
         add(jLabel1);
@@ -112,7 +113,9 @@ public class PanelInfoServicio extends javax.swing.JPanel {
             }
         });
         add(jButton1);
-        jButton1.setBounds(360, 240, 120, 23);
+        jButton1.setBounds(360, 280, 120, 23);
+        add(lblCli);
+        lblCli.setBounds(20, 70, 570, 40);
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnAbrirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAbrirActionPerformed
@@ -144,6 +147,7 @@ public class PanelInfoServicio extends javax.swing.JPanel {
     private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JLabel lblCli;
     private javax.swing.JList lstServiciosMesa;
     private javax.swing.JTextField txtMesaSeleccionada;
     // End of variables declaration//GEN-END:variables
@@ -152,6 +156,8 @@ public class PanelInfoServicio extends javax.swing.JPanel {
         if(m!=null){
             mesaSeleccionada = m;
             txtMesaSeleccionada.setText(" # " +m.verNumero() + " estado: " + m.estaAbierta() + " total= " + m.calcularTotalServicio());
+            lblCli.setText("Cliente: " + m.getCliente() + " Total Servicio= " + m.totalSinDescuento() 
+                    + " Beneficio aplicado " + m.mostrarBeneficio() + " Total a pagar= " + m.calcularTotalServicio());
             lstServiciosMesa.setListData(m.listarServicio().toArray());
         }
     }

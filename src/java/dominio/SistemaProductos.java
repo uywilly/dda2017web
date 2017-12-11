@@ -35,6 +35,17 @@ public class SistemaProductos {
         productos = p.obtenerTodos(mp);
         
     }
+
+    public Producto buscarProductoXid(String dato) {
+        Producto unp = null;
+        int contador = 0;
+        while(contador<productos.size() && unp==null){
+            if(productos.get(contador).getCodigo().equalsIgnoreCase(dato)){
+                unp = productos.get(contador);
+            }
+        }
+        return unp;
+    }
     
     
 }

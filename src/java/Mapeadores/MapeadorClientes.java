@@ -7,6 +7,8 @@ package Mapeadores;
 
 import Persistencia.Mapeador;
 import dominio.Cliente;
+import dominio.RestaurantException;
+import dominio.Sistema;
 import dominio.TipoClienteComun;
 import dominio.TipoClienteDeLaCasa;
 import dominio.TipoClientePreferencial;
@@ -69,6 +71,8 @@ public class MapeadorClientes implements Mapeador{
         switch(rs.getString("tipo")){
             case "COMUN":
                 TipoClienteComun tcc = new TipoClienteComun(100, 0);
+                try{ tcc.setProductoConDescuento(Sistema.getInstancia().buscarProductoXid("111114"));}
+                catch(RestaurantException ex){}
                 unC.setTipo(tcc);
             break;
             case "DE LA CASA":
@@ -77,6 +81,8 @@ public class MapeadorClientes implements Mapeador{
             break;
             case "PREFERENCIAL":
                 TipoClienteDeLaCasa tcdc = new TipoClienteDeLaCasa(0, 500);
+                try{ tcdc.setProductoConDescuento(Sistema.getInstancia().buscarProductoXid("111113"));}
+                catch(RestaurantException ex){}
                 unC.setTipo(tcdc);
             break;
         }

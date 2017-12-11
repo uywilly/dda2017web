@@ -62,6 +62,21 @@ public class Mesa implements IMesa {
     public Mozo verMozo() {
         return this.mozo;
     }
+    
+    @Override
+    public int totalSinDescuento() {
+        int salida = 0;
+        for (Pedido unP : this.servicio) {
+            salida += (unP.getCantidad() * unP.getProducto().getPrecioUni());
+        }
+        return salida;
+    }
+    @Override
+    public String mostrarBeneficio() {
+        String salida = "";
+        if(this.getCliente()!=null) salida = this.getCliente().mostrarBeneficio();
+        return salida;
+    }
 
     @Override
     public int calcularTotalServicio() {
@@ -173,5 +188,9 @@ public class Mesa implements IMesa {
     public void setOid(int oid) {
         this.oid = oid;
     }
+
+
+
+    
 
 }

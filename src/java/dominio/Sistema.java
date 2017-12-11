@@ -19,9 +19,7 @@ public class Sistema extends Observable {
     private SistemaTransferencias st = new SistemaTransferencias();
     private SistemaUnidadProcesadora supp = new SistemaUnidadProcesadora();
 
-    public Cliente buscarClienteXid(int pos) throws RestaurantException {
-        return su.buscarClienteXid(pos);
-    }
+
 
     public enum Eventos {
         abrirMesa, cerrarMesa, agregarPedido, 
@@ -63,6 +61,13 @@ public class Sistema extends Observable {
     
     public boolean logout(Mozo m) {
         return su.logoutMozo(m);
+    }
+    public Cliente buscarClienteXid(int pos) throws RestaurantException {
+        return su.buscarClienteXid(pos);
+    }
+
+    public Producto buscarProductoXid(String dato) {
+        return sp.buscarProductoXid(dato);
     }
     
     public void asignarClienteSeleccionadoMesa(IMesa mesaSeleccionada, Cliente unC) throws RestaurantException {
