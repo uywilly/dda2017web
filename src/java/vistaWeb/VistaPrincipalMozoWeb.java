@@ -173,7 +173,11 @@ public class VistaPrincipalMozoWeb implements VistaMozo{
 
     @Override
     public void mostrarMesa(IMesa m) {
-        enviar("infoMesa",m.toString());
+        String texto="";
+        texto+= " # " + m.verNumero() + " estado: " + m.estaAbierta() + " total= " + m.calcularTotalServicio();
+        texto+= "<br> Cliente: " + m.getCliente() + " Total Servicio= " + m.totalSinDescuento();
+         texto+= " <br> " + m.mostrarBeneficio() + " Total a pagar= " + m.calcularTotalServicio()+" <br> ";
+        enviar("infoMesa",texto);
     }
     @Override
     public void limpiar() {
