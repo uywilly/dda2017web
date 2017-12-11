@@ -28,7 +28,7 @@ public class VentanaAsignacionCliente extends javax.swing.JFrame implements Vist
     public VentanaAsignacionCliente(ArrayList<Cliente> verClientesRegistrados, IMesa mesaSeleccionada) {
         controlador = new ControladorAsignacionCliente(mesaSeleccionada,this);
         initComponents();
-        controlador.cargarLista(verClientesRegistrados);
+        //controlador.cargarLista(verClientesRegistrados);
     }
 
     /**
@@ -40,18 +40,13 @@ public class VentanaAsignacionCliente extends javax.swing.JFrame implements Vist
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jScrollPane1 = new javax.swing.JScrollPane();
-        lstClientesRegistrados = new javax.swing.JList();
         btnAsignarCliente = new javax.swing.JButton();
         btnCancelar = new javax.swing.JButton();
+        txtCodCli = new javax.swing.JTextField();
+        jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(null);
-
-        jScrollPane1.setViewportView(lstClientesRegistrados);
-
-        getContentPane().add(jScrollPane1);
-        jScrollPane1.setBounds(10, 10, 370, 190);
 
         btnAsignarCliente.setText("Asignar");
         btnAsignarCliente.addActionListener(new java.awt.event.ActionListener() {
@@ -70,13 +65,22 @@ public class VentanaAsignacionCliente extends javax.swing.JFrame implements Vist
         });
         getContentPane().add(btnCancelar);
         btnCancelar.setBounds(200, 230, 110, 23);
+        getContentPane().add(txtCodCli);
+        txtCodCli.setBounds(10, 110, 370, 30);
+
+        jLabel1.setText("Ingrese el codigo de cliente");
+        getContentPane().add(jLabel1);
+        jLabel1.setBounds(10, 70, 360, 30);
 
         setBounds(0, 0, 416, 339);
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnAsignarClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAsignarClienteActionPerformed
-        Cliente unC = (Cliente)lstClientesRegistrados.getSelectedValue();
-        controlador.asignarClienteMesa(unC);
+        //Cliente unC = (Cliente)lstClientesRegistrados.getSelectedValue();
+        //controlador.asignarClienteMesa(unC);
+        int codCli = Integer.parseInt(txtCodCli.getText());
+        controlador.asignarClienteMesa(codCli);
+        
         this.dispose();
     }//GEN-LAST:event_btnAsignarClienteActionPerformed
 
@@ -88,13 +92,13 @@ public class VentanaAsignacionCliente extends javax.swing.JFrame implements Vist
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAsignarCliente;
     private javax.swing.JButton btnCancelar;
-    private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JList lstClientesRegistrados;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JTextField txtCodCli;
     // End of variables declaration//GEN-END:variables
 
     @Override
     public void cargarLista(ArrayList<Cliente> verClientesRegistrados) {
-        lstClientesRegistrados.setListData(verClientesRegistrados.toArray());
+        //lstClientesRegistrados.setListData(verClientesRegistrados.toArray());
     }
 
     @Override

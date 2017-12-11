@@ -94,6 +94,7 @@ public class Mesa implements IMesa {
             descuentoTotal = cliente.calcularDescuentoTotal(salida);
         }
         salida -= descuentoTotal;
+        if(salida<0) salida =0;
         return salida;
     }
 

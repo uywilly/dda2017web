@@ -31,6 +31,15 @@ public class ControladorAsignacionCliente {
     public void cargarLista(ArrayList<Cliente> verClientesRegistrados) {
         vista.cargarLista(verClientesRegistrados);
     }
+    public void asignarClienteMesa(int codCli) {
+        try{
+            Cliente unC = modelo.buscarClienteXid(codCli);
+            modelo.asignarClienteSeleccionadoMesa(mesaSeleccionada,unC);
+        }
+        catch(RestaurantException ex){
+            vista.error(ex.getMessage());
+        }
+    }
 
     public void asignarClienteMesa(Cliente unC) {
         try{
@@ -39,8 +48,7 @@ public class ControladorAsignacionCliente {
         catch(RestaurantException ex){
             vista.error(ex.getMessage());
         }
-    }
-    
+    } 
     
     
 }

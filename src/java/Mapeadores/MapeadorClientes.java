@@ -76,14 +76,15 @@ public class MapeadorClientes implements Mapeador{
                 unC.setTipo(tcc);
             break;
             case "DE LA CASA":
-                TipoClientePreferencial tcp = new TipoClientePreferencial(100, 5);
-                unC.setTipo(tcp);
+                TipoClienteDeLaCasa tcdc = new TipoClienteDeLaCasa(0, 500);
+                unC.setTipo(tcdc);
             break;
             case "PREFERENCIAL":
-                TipoClienteDeLaCasa tcdc = new TipoClienteDeLaCasa(0, 500);
-                try{ tcdc.setProductoConDescuento(Sistema.getInstancia().buscarProductoXid("111113"));}
+                
+                TipoClientePreferencial tcp = new TipoClientePreferencial(100, 5);
+                try{ tcp.setProductoConDescuento(Sistema.getInstancia().buscarProductoXid("111113"));}
                 catch(RestaurantException ex){}
-                unC.setTipo(tcdc);
+                unC.setTipo(tcp);
             break;
         }
     }
